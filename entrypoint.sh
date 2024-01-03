@@ -19,7 +19,7 @@ WORKDIR=${SRCDIR:-/src}
 
 SPEC_FILE=${4:-*.spec}
 
-/root/.pyenv/shims/python -m pip install --upgrade pip wheel setuptools
+# python3 -m pip install --upgrade pip wheel setuptools
 
 #
 # In case the user specified a custom URL for PYPI, then use
@@ -56,10 +56,10 @@ if [[ $7 == "true" ]]; then
 fi # [$7]
 
 if [ -f $6 ]; then
-    /root/.pyenv/shims/pip install -r $6
+    pip3 install -r $6
 fi # [ -f $6 ]
 
 
-/root/.pyenv/shims/pyinstaller --clean -y --dist ./dist/linux --workpath /tmp $SPEC_FILE
+pyinstaller --clean -y --dist ./dist/linux --workpath /tmp $SPEC_FILE
 
 chown -R --reference=. ./dist/linux
